@@ -1,0 +1,92 @@
+{
+  "name": "@yaacovcr/paraloader",
+  "version": "0.0.1",
+  "description": "A utility for managing concurrent data loaders of different priorities.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "./dist"
+  ],
+  "typesVersions": {
+    ">=4.4.0": {
+      "*": [
+        "*"
+      ]
+    }
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/yaacovcr/paraloader",
+  "bugs": {
+    "url": "https://github.com/yaacovcr/paraloader/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yaacovcr/paraloader.git"
+  },
+  "keywords": [
+    "graphql",
+    "dataloader",
+    "incremental",
+    "concurrent",
+    "parallel",
+    "loader",
+    "priority",
+    "queue"
+  ],
+  "engines": {
+    "node": "^16.19.0 || ^18.14.0 || >=19.7.0"
+  },
+  "dependencies": {
+    "dataloader": "^2.2.2",
+    "fastpriorityqueue": "^0.7.4"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "@types/chai": "4.3.5",
+    "@types/mocha": "10.0.1",
+    "@types/node": "20.2.5",
+    "@types/prettier": "2.7.3",
+    "@types/sinon": "10.0.15",
+    "@typescript-eslint/eslint-plugin": "5.59.8",
+    "@typescript-eslint/parser": "5.59.8",
+    "c8": "7.14.0",
+    "chai": "4.3.7",
+    "cspell": "6.31.1",
+    "eslint": "8.41.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "mocha": "10.2.0",
+    "prettier": "2.8.8",
+    "sinon": "^15.1.0",
+    "ts-node": "10.9.1",
+    "tsup": "7.0.0",
+    "typescript": "5.0.4"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run check && npm run testonly && npm run prettier:check && npm run check:spelling",
+    "lint": "eslint --rulesdir resources/eslint-internal-rules --cache --max-warnings 0 .",
+    "check": "tsc --pretty",
+    "testonly": "mocha --full-trace 'src/**/__tests__/**/*-test.ts'",
+    "testonly:cover": "c8 npm run testonly",
+    "testonly:watch": "npm run testonly -- --watch",
+    "prettier": "prettier --cache --cache-strategy metadata --write --list-different .",
+    "prettier:check": "prettier --cache --cache-strategy metadata --check .",
+    "check:spelling": "cspell --cache --no-progress '**/*'",
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "diff:npm": "ts-node resources/diff-npm-package.ts",
+    "changeset": "changeset add",
+    "changeset:version": "changeset version && npm install --package-lock-only",
+    "changeset:publish": "npm run build && changeset publish"
+  }
+}

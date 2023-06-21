@@ -1,0 +1,21 @@
+language: en
+useGitignore: true
+# TODO enableGlobDot: true
+ignorePaths:
+  # Excluded from spelling check
+  - cspell.yml
+  - package.json
+
+validateDirectives: true
+ignoreRegExpList:
+  - u\{[0-9a-f]{1,8}\}
+
+words:
+  - ParaLoader
+  - paraloader
+  - fastpriorityqueue
+
+  # TODO: remove below words
+  - Yaacov
+  - Rydzinski
+  - yaacovcr
